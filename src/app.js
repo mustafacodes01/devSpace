@@ -1,27 +1,15 @@
 const express = require("express");
 const app = express();
-app.use("/hello/yo",(req,res)=>{
-    res.send("yoyo");
-});
-app.get("/user",(req,res)=>{
-res.send({name: "Mustafa Hussain"})
-});
-app.post("/user",(req,res)=>{
-res.send("saved data successfully")
-});
-app.delete("/user",(req,res)=>{
-    res.send("Deleted data succesfully")
+// queries in route
+app.get("/user/:userId/:name/:password",(req,res)=>{
+console.log(req.params);
+res.send({
+    name : "Mustafa Hussain"
 })
-/* app.use("/test",(req,res)=>{
-    res.send("Testing");
-});
-app.use("/hello",(req,res)=>{
-    res.send("Hello Hello Hello");
-});
-app.use("/",(req,res)=>{
-    res.send("Hello HomePage");
-});*/
+})
 
+// params in route
+// ':' means route is dynamic
 app.listen(3000,()=>{
     console.log("Server is successfully listening to 3000");
 })
