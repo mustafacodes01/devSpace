@@ -1,15 +1,17 @@
 const express = require("express");
 const app = express();
-// queries in route
-app.get("/user/:userId/:name/:password",(req,res)=>{
-console.log(req.params);
-res.send({
-    name : "Mustafa Hussain"
+const {adminAuth,userAuth} = require("./middlewares/auth")
+app.use("/admin",adminAuth);
+app.get("/user",userAuth,(req,res)=>{
+    res.send("user data send succesfully !")
 })
-})
+app.get("/admin/getAllData",(req,res,next)=>{
+    res.send("All data send ")
+});
+app.get("/admin/deleteUser",(req,res,next)=>{
+    res.send("User deleted successfully!")
+});
 
-// params in route
-// ':' means route is dynamic
 app.listen(3000,()=>{
     console.log("Server is successfully listening to 3000");
 })
